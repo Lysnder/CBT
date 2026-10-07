@@ -11,6 +11,8 @@ export const envSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.url(),
   DEFAULT_LOCALE: z.enum(['tr', 'en']).default('tr'),
   BASE_CURRENCY: z.string().length(3).default('TRY'),
+  // Yalnızca `pnpm db:seed` kullanır; uygulama açılışı için zorunlu değil.
+  SEED_ADMIN_PASSWORD: z.string().min(12).optional(),
 });
 
 export type Env = z.infer<typeof envSchema>;

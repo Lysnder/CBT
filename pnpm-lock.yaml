@@ -116,6 +116,9 @@ importers:
       '@cbt/config':
         specifier: workspace:*
         version: link:../config
+      '@cbt/modules':
+        specifier: workspace:*
+        version: link:../modules
       drizzle-orm:
         specifier: 0.45.3
         version: 0.45.3(postgres@3.4.9)
@@ -137,6 +140,10 @@ importers:
         version: 5.9.3
 
   packages/modules:
+    dependencies:
+      drizzle-orm:
+        specifier: 0.45.3
+        version: 0.45.3(postgres@3.4.9)
     devDependencies:
       '@cbt/config':
         specifier: workspace:*

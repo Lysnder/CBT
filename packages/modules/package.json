@@ -4,10 +4,14 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./*/schema": "./*/schema.ts",
     "./*": "./*/index.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "drizzle-orm": "0.45.3"
   },
   "devDependencies": {
     "@cbt/config": "workspace:*",

@@ -1,3 +1,6 @@
-// Modül şemaları buradan re-export edilir (spec 002'den itibaren), ör:
-// export * from '@cbt/modules/catalog/schema';
-export {};
+// Modül şemaları buradan re-export edilir; tablolar modüllerin kendi `schema.ts`'inde tanımlıdır.
+export * from '@cbt/modules/auth/schema';
+export * from '@cbt/modules/customers/schema';
+export * from '@cbt/modules/catalog/schema';
+export * from '@cbt/modules/pricing/schema';
+export * from '@cbt/modules/inventory/schema';

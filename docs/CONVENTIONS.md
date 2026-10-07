@@ -22,7 +22,7 @@
 - Dış servis çağrıları (POS, kargo, kur) adaptör arayüzü arkasında: `PaymentProvider`, `ShippingProvider`, `RateProvider`. Test için `Fake*` uygulaması.
 
 ## Test
-- Vitest. Her modül kendi `tests/`; servis fonksiyonları birim test, route'lar entegrasyon (test DB: `docker compose` içindeki Postgres, şema `test_`).
+- Vitest. Her modül kendi `tests/`; servis fonksiyonları birim test, route'lar entegrasyon (test DB: `docker compose` içindeki Postgres, ayrı `cbt_test` veritabanı).
 - Kritik hesaplar için tablo tabanlı test: `resolveDealerPrice`, `pickWarehouse`, KDV hesabı.
 - Playwright: yalnızca checkout ve admin ürün ekleme akışı (Faz 1).
 
