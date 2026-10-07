@@ -1,0 +1,21 @@
+{
+  "name": "worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "ping": "tsx src/scripts/enqueue-ping.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cbt/config": "workspace:*",
+    "bullmq": "6.3.11",
+    "ioredis": "6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

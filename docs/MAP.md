@@ -6,32 +6,34 @@ Güncelleme kuralı: yeni dosya/modül ekleyen görev bu dosyayı da günceller.
 ## Kök yapı
 ```
 apps/web/            Next.js (mağaza + admin). src/app/(store), src/app/(admin), src/app/api
-apps/worker/         BullMQ işleri: mail, kur güncelleme, kargo, pazaryeri senkronu
-packages/db/         Drizzle client, migration'lar, seed. Şema modüllerden toplanır.
-packages/modules/    İş mantığı. Her modül kendi klasöründe (aşağıda).
-packages/ui/         shadcn bileşenleri, tema değişkenleri
-packages/config/     eslint, tsconfig, tailwind ortak ayarlar
+apps/worker/         BullMQ işleri: mail, kur güncelleme, kargo, pazaryeri senkronu. src/index.ts, src/connection.ts, src/scripts/
+packages/db/         Drizzle client (src/client.ts), src/schema/index.ts, src/migrate.ts, migrations/, seed/. Şema modüllerden toplanır.
+packages/modules/    İş mantığı. Her modül kendi klasöründe (aşağıda). Tek paket: `@cbt/modules/<ad>`.
+packages/ui/         shadcn bileşenleri (src/components), `cn()` (src/lib), components.json
+packages/config/     tsconfig.base.json, eslint.config.js, tailwind.css (tema değişkenleri), env.ts
 docs/                MAP, CONVENTIONS, DOMAIN, specs/, decisions/
-infra/               docker-compose.yml, Caddyfile, deploy scriptleri
+infra/               docker-compose.yml (Caddyfile ve deploy scriptleri sonraki spec'lerde)
 ```
+Kök: `package.json` (scriptler), `pnpm-workspace.yaml`, `eslint.config.js`, `vitest.config.ts` + `vitest.workspace.ts`, `.env.example`.
+Paket adları: `web`, `worker`, `@cbt/config`, `@cbt/db`, `@cbt/modules`, `@cbt/ui`.
 
 ## Modüller (`packages/modules/<ad>/`)
 | Modül | Ne yapar | Ana tablolar | Durum |
 | --- | --- | --- | --- |
-| `catalog` | Ürün, varyant, kategori ağacı, attribute set, çeviri | product, product_variant, category, attribute_set, attribute_value, product_translation | Faz 0 şema |
-| `pricing` | Liste fiyatı, statü indirim matrisi, bayi fiyat hesabı, kur | tier, tier_category_discount, product_tier_override, currency_rate | Faz 0 şema |
-| `inventory` | Depolar, depo bazlı stok, rezervasyon, çıkış depo seçimi | warehouse, inventory_level, stock_reservation | Faz 0 şema |
-| `customers` | Bireysel müşteri, firma (B2B), statü ataması, adresler | customer, company, company_user, address | Faz 0 şema |
-| `auth` | Oturum, roller (admin / customer / dealer), yetki | user, role, session (Auth.js) | Faz 0 |
-| `orders` | Sepet, sipariş, durum makinesi, teklif (RFQ) | cart, cart_item, order, order_item, quote | Faz 1 |
-| `payments` | Sanal POS adaptörü, webhook, iade | payment, payment_attempt | Faz 1 |
-| `shipping` | Kargo adaptörü, etiket, takip | shipment, shipment_event | Faz 1 |
-| `notifications` | Mail şablonları (React Email), kuyruk | notification_log | Faz 1 |
-| `media` | Görsel yükleme, işleme (sharp), depolama | media_asset | Faz 1 |
-| `i18n` | Dil dosyaları, locale routing yardımcıları | — | Faz 1 |
-| `invoicing` | e-Fatura / e-Arşiv entegratör adaptörü | invoice, invoice_line | Faz 2 (boş) |
-| `marketplace` | Trendyol / Hepsiburada adaptörleri | channel, channel_listing, channel_order | Faz 3 (boş) |
-| `licensing` | Kurulum kimliği, lisans anahtarı (ürünleştirme) | installation, license_key | Faz 3 (boş) |
+| `catalog` | Ürün, varyant, kategori ağacı, attribute set, çeviri | product, product_variant, category, attribute_set, attribute_value, product_translation | Faz 0 · boş |
+| `pricing` | Liste fiyatı, statü indirim matrisi, bayi fiyat hesabı, kur | tier, tier_category_discount, product_tier_override, currency_rate | Faz 0 · boş |
+| `inventory` | Depolar, depo bazlı stok, rezervasyon, çıkış depo seçimi | warehouse, inventory_level, stock_reservation | Faz 0 · boş |
+| `customers` | Bireysel müşteri, firma (B2B), statü ataması, adresler | customer, company, company_user, address | Faz 0 · boş |
+| `auth` | Oturum, roller (admin / customer / dealer), yetki | user, role, session (Auth.js) | Faz 0 · boş |
+| `orders` | Sepet, sipariş, durum makinesi, teklif (RFQ) | cart, cart_item, order, order_item, quote | Faz 1 · boş |
+| `payments` | Sanal POS adaptörü, webhook, iade | payment, payment_attempt | Faz 1 · boş |
+| `shipping` | Kargo adaptörü, etiket, takip | shipment, shipment_event | Faz 1 · boş |
+| `notifications` | Mail şablonları (React Email), kuyruk | notification_log | Faz 1 · boş |
+| `media` | Görsel yükleme, işleme (sharp), depolama | media_asset | Faz 1 · boş |
+| `i18n` | Dil dosyaları, locale routing yardımcıları | — | Faz 1 · boş |
+| `invoicing` | e-Fatura / e-Arşiv entegratör adaptörü | invoice, invoice_line | Faz 2 · boş |
+| `marketplace` | Trendyol / Hepsiburada adaptörleri | channel, channel_listing, channel_order | Faz 3 · boş |
+| `licensing` | Kurulum kimliği, lisans anahtarı (ürünleştirme) | installation, license_key | Faz 3 · boş |
 
 ## Sık yapılan işler → nereye bakılır
 | İş | Dosya |
@@ -44,6 +46,8 @@ infra/               docker-compose.yml, Caddyfile, deploy scriptleri
 | Yeni kuyruk işi | `apps/worker/src/jobs/<ad>.ts` + kayıt `apps/worker/src/index.ts` |
 | Ortam değişkeni | `.env.example` + `packages/config/env.ts` (Zod şeması) |
 | Seed verisi | `packages/db/seed/*.ts` |
+| Yeni shadcn bileşeni | `packages/ui/src/components/<ad>.tsx` → `@cbt/ui/components/<ad>` |
+| Lokal servisler | `infra/docker-compose.yml` |
 
 ## Spec ve karar kayıtları
 - Spec'ler: `docs/specs/NNN-ad.md` (sıralı). Açık olanlar listenin başında.

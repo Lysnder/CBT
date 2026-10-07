@@ -31,7 +31,7 @@ pnpm lint           # eslint + tsc --noEmit
 pnpm db:generate    # drizzle migration üret
 pnpm db:migrate     # migration uygula
 pnpm db:seed        # küçük seed (10 ürün, 3 statü, 2 depo)
-docker compose up -d postgres redis meilisearch
+docker compose -f infra/docker-compose.yml up -d
 ```
 
 ## İş kuralları (kısa; sözlük docs/DOMAIN.md)

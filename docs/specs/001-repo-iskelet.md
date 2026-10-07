@@ -9,7 +9,7 @@ pnpm monorepo kurulur; `docker compose up` + `pnpm dev` ile boş bir Next.js say
 
 ## Adımlar
 1. `pnpm init` + `pnpm-workspace.yaml` (`apps/*`, `packages/*`). Node 22, pnpm 9. `.nvmrc` ekle.
-2. `packages/config`: ortak `tsconfig.base.json` (strict, paths), `eslint.config.js`, `tailwind.preset.ts`, `env.ts` (Zod ile `process.env` doğrulama; eksik değişkende açılışta hata).
+2. `packages/config`: ortak `tsconfig.base.json` (strict, paths), `eslint.config.js`, `tailwind.css` (Tailwind v4 ortak tema; v4'te preset dosyası yok), `env.ts` (Zod ile `process.env` doğrulama; eksik değişkende açılışta hata).
 3. `apps/web`: `create-next-app` (TypeScript, App Router, Tailwind, src dizini, import alias `@/`). shadcn/ui init. Route grupları: `(store)`, `(admin)`, `api`. Anasayfa "Kurulum tamam" yazsın; `/admin` sayfası "Admin" yazsın.
 4. `apps/worker`: tek `index.ts`; BullMQ bağlanır, `ping` kuyruğunu dinler, log yazar. `tsx watch` ile çalışır.
 5. `packages/db`: Drizzle client (`postgres-js`), `drizzle.config.ts`, boş `schema/index.ts` (modül şemalarını re-export edecek), `migrate.ts`, `seed/index.ts` (boş).

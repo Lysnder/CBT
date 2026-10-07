@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "paths": {
+      "@cbt/config/*": ["./*"],
+      "@cbt/db": ["../db/src/client.ts"],
+      "@cbt/db/schema": ["../db/src/schema/index.ts"],
+      "@cbt/modules/*": ["../modules/*/index.ts"],
+      "@cbt/ui/components/*": ["../ui/src/components/*"],
+      "@cbt/ui/lib/*": ["../ui/src/lib/*"]
+    }
+  }
+}
