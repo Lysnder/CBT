@@ -1,7 +1,9 @@
 # CBT
+
 CBT Teknoloji E-Ticaret Sitesi
 
 ## Lokal kurulum
+
 Gerekenler: Node 22 (`.nvmrc`), pnpm 9 (`corepack enable`), Docker.
 
 ```

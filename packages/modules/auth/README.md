@@ -1,4 +1,5 @@
 # auth
+
 Ne yapar: Oturum, roller (admin / customer / dealer) ve yetki kontrolü.
 Public API (index.ts): —
 Bağımlı olduğu modüller: —

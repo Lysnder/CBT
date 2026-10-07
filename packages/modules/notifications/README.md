@@ -1,4 +1,5 @@
 # notifications
+
 Ne yapar: Mail şablonları (React Email) ve gönderim kuyruğu.
 Public API (index.ts): —
 Bağımlı olduğu modüller: —

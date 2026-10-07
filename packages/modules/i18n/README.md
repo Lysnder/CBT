@@ -1,4 +1,5 @@
 # i18n
+
 Ne yapar: Dil dosyaları ve locale routing yardımcıları.
 Public API (index.ts): —
 Bağımlı olduğu modüller: —

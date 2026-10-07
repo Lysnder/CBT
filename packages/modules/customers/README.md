@@ -1,4 +1,5 @@
 # customers
+
 Ne yapar: Bireysel müşteri, firma (B2B), statü ataması ve adresler.
 Public API (index.ts): —
 Bağımlı olduğu modüller: auth

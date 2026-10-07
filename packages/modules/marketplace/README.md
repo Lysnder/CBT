@@ -1,4 +1,5 @@
 # marketplace
+
 Ne yapar: Trendyol / Hepsiburada adaptörleri.
 Public API (index.ts): —
 Bağımlı olduğu modüller: catalog, inventory, orders

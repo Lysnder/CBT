@@ -1,4 +1,5 @@
 # licensing
+
 Ne yapar: Kurulum kimliği ve lisans anahtarı (ürünleştirme).
 Public API (index.ts): —
 Bağımlı olduğu modüller: —

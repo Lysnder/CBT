@@ -5,9 +5,11 @@ Dokunulacak: kök dosyalar, `apps/web`, `apps/worker`, `packages/*` klasör iske
 Dokunulmayacak: iş mantığı, şema içeriği (bunlar 002'de), CI/CD (003'te)
 
 ## Amaç
+
 pnpm monorepo kurulur; `docker compose up` + `pnpm dev` ile boş bir Next.js sayfası ve çalışan bir worker ayağa kalkar. Her modül klasörü README'si ile yerinde durur ama içi boştur.
 
 ## Adımlar
+
 1. `pnpm init` + `pnpm-workspace.yaml` (`apps/*`, `packages/*`). Node 22, pnpm 9. `.nvmrc` ekle.
 2. `packages/config`: ortak `tsconfig.base.json` (strict, paths), `eslint.config.js`, `tailwind.css` (Tailwind v4 ortak tema; v4'te preset dosyası yok), `env.ts` (Zod ile `process.env` doğrulama; eksik değişkende açılışta hata).
 3. `apps/web`: `create-next-app` (TypeScript, App Router, Tailwind, src dizini, import alias `@/`). shadcn/ui init. Route grupları: `(store)`, `(admin)`, `api`. Anasayfa "Kurulum tamam" yazsın; `/admin` sayfası "Admin" yazsın.
@@ -22,8 +24,10 @@ pnpm monorepo kurulur; `docker compose up` + `pnpm dev` ile boş bir Next.js say
 12. Vitest kurulumu (kökte `vitest.workspace.ts`); örnek bir test `packages/config/env.test.ts` geçsin.
 
 ## Modül README şablonu
+
 ```markdown
 # <modül>
+
 Ne yapar: (1–2 cümle)
 Public API (index.ts): (fonksiyon listesi; henüz yoksa "—")
 Bağımlı olduğu modüller: (liste)
@@ -32,6 +36,7 @@ Durum: Faz N · boş / şema var / servis var / UI var
 ```
 
 ## Kabul kriterleri
+
 - [ ] `docker compose up -d` sonrası üç servis `healthy`
 - [ ] `pnpm dev` → http://localhost:3000 "Kurulum tamam", /admin "Admin"
 - [ ] Worker konsola "worker ready" yazar; Redis'e `ping` işi eklenince "pong" loglar
@@ -42,5 +47,6 @@ Durum: Faz N · boş / şema var / servis var / UI var
 - [ ] `docs/MAP.md` gerçek klasör yapısıyla birebir uyuşur
 
 ## Notlar
+
 - Hiçbir modüle şema veya iş mantığı yazılmaz; bu spec sadece iskelet.
 - Paket sürümleri sabitlenir (`^` yok), pnpm lock commit'lenir.

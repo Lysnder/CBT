@@ -1,4 +1,5 @@
 # catalog
+
 Ne yapar: Ürün, varyant, kategori ağacı, attribute set ve çevirileri yönetir.
 Public API (index.ts): —
 Bağımlı olduğu modüller: —

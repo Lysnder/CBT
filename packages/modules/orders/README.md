@@ -1,4 +1,5 @@
 # orders
+
 Ne yapar: Sepet, sipariş, durum makinesi ve teklif (RFQ).
 Public API (index.ts): —
 Bağımlı olduğu modüller: catalog, pricing, inventory, customers

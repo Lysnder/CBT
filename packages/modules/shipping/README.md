@@ -1,4 +1,5 @@
 # shipping
+
 Ne yapar: Kargo adaptörü, etiket ve takip.
 Public API (index.ts): —
 Bağımlı olduğu modüller: orders, inventory

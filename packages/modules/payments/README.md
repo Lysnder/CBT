@@ -1,4 +1,5 @@
 # payments
+
 Ne yapar: Sanal POS adaptörü, webhook ve iade.
 Public API (index.ts): —
 Bağımlı olduğu modüller: orders
